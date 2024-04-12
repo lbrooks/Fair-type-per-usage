@@ -56,7 +56,4 @@ func main() {
 			}
 		}
 	}
-
-	// fmt.Printf("Trips per weekly: %f\n", FareWeekly/FareOnePeak)
-	// fmt.Printf("Trips per monthly: %f\n", FareMonthly/FareOnePeak)
 }

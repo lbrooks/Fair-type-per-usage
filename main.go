@@ -6,8 +6,6 @@ import (
 )
 
 const FareOnePeak = 13
-const FareTenPeak = 130
-const FareTenOffPeak = 83
 const FareMonthly = 253
 const FareWeekly = 90
 

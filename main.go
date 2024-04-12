@@ -11,6 +11,15 @@ const FareTenOffPeak = 83
 const FareMonthly = 253
 const FareWeekly = 90
 
+func beginAtMonth(month time.Month, months []time.Month) []time.Month {
+	for k, v := range months {
+		if month == v {
+			return append(months[k:], months[0:k]...)
+		}
+	}
+	return months //not found.
+}
+
 func main() {
 	for i := 1; i <= 5; i++ {
 		costPerWeek := FareOnePeak * 2 * i
@@ -28,12 +37,12 @@ func main() {
 		{time.Tuesday, time.Wednesday, time.Monday, time.Thursday, time.Friday},
 	}
 
-	monthArray := []time.Month{
-		time.January, time.February, time.March, time.April, time.May, time.June, time.July, time.August, time.September, time.October, time.November, time.December}
+	monthArray := beginAtMonth(time.Now().Local().Month(), []time.Month{
+		time.January, time.February, time.March, time.April, time.May, time.June, time.July, time.August, time.September, time.October, time.November, time.December})
 
 	for _, month := range monthArray {
 		counts := make(map[time.Weekday]int)
-		for day := time.Date(2024, month, 1, 0, 0, 0, 0, time.Local); day.Local().Month() == month; day = day.AddDate(0, 0, 1) {
+		for day := time.Date(time.Now().Year(), month, 1, 0, 0, 0, 0, time.Local); day.Local().Month() == month; day = day.AddDate(0, 0, 1) {
 			counts[day.Local().Weekday()]++
 		}
 		for _, days := range daysToGoIn {
